@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
@@ -31,6 +32,16 @@ class Solution {
         List<Integer> primeArr = primeArray(q);
         List<Integer> ans = new ArrayList<>();
 
+        //Tóm tắt bài toán: ban đầu người ta cho mảng A, ta sẽ đổ vào 2
+        //stack A1 và B1, sau đó lại lấy stack A1 thực hiện đổ vào stack A2, B2
+        // cứ như vậy cho đến khi stack Ai không còn phần tử nào nữa thì dừng.
+
+        //Như vậy, ý tưởng đầu tiên, ban đầu ta sẽ đổ mảng number đã cho vào 2
+        // stack A và B (lần 1)
+        // Các lần sau ta sẽ duyệt stack A, những phần tử nào thỏa mãn chia hết cho số
+        // nguyên tố thứ i thì ta sẽ bỏ vào stack B, sau đó đảo ngược lại stack A bằng
+        //cách đổ vào 1 stack khác rồi gán lại cho A. (hành động tương tự như các pt 
+        //còn lại ở lần thứ A_i sẽ đổ vào stack thứ A_i+1)
         Stack<Integer> A = new Stack<>();
         Stack<Integer> B = new Stack<>();
         for (int i = number.size() - 1; i >=0; i--) {
@@ -63,6 +74,33 @@ class Solution {
         while (A.empty() == false) ans.add(A.pop());
             
         return ans;
+    }
+
+
+    //cải tiến ý tưởng trên, ta sẽ không cần dùng stack nữa. Ta sẽ tạo ra 
+    //một list mới để chứa kết quả, duyệt dãy đã cho q lần, mỗi lần duyệt, 
+    //ta sẽ lấy những số chia hết cho số nguyên tố thứ i bỏ vào trong list kết quả 
+    //(clone pt đó sang list kết quả rồi xóa phần tử đó khỏi list cũ) 
+    //(thay cho việc duyệt dãy từ cuối lên đầu, push các phần tử thỏa mãn 
+    //vào stack Bi rồi đổ ngược lại vào list kết quả). 
+    //Sau đó đảo ngược list cũ (thay cho việc push các phần tử còn lại vào stack Ai)
+    public static List<Integer> waiter2(List<Integer> number, int q) {
+        // Write your code here
+        List<Integer> prime = primeArray(q);
+        List<Integer> num = new ArrayList<>();
+        for(int p:prime){
+            for(int i =0;i<number.size();i++){
+                if(number.get(i)%p==0){
+                    num.add(number.get(i));
+                    number.remove(i);
+                    i--;
+                }
+            }
+            Collections.reverse(number);
+        }
+        Collections.reverse(number);
+        num.addAll(number);
+        return num;
     }
 
     public static void main(String[] args) {
