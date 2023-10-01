@@ -17,7 +17,12 @@ class Result {
 
     public static int truckTour(List<List<Integer>> petrolpumps) {
     // Write your code here
-    //Hình dung ta sẽ có 1 vị trí pump mà tại đó khi xuất phát ta sẽ đi được 1 vòng quanh tất cả các pump. Như vậy ta chỉ cần xuất phát từ pump đầu tiên, nếu xuất phát từ pump đầu tiên không đi được hết vòng tròn mà bị cạn nhiên liệu tại pump thứ i thì ta nhảy sang kiểm tra pump tại pump thứ i+1 luôn (vì nếu giả sử ta nhảy sang kiểm tra pump thứ 2, 3, ... , i-1, i thì chắc chắn ta cũng không đi được hết vòng tròn vì tổng số dư petrol vẫn là âm) Nếu xuất phát tại phần tử thứ k (k > 1) mà đi được hết dãy (số dư petrol cuối dãy vẫn là dương) thì chứng tỏ ta có thể xuất phát tại điểm thứ k
+    //Hình dung ta sẽ có 1 vị trí pump mà tại đó khi xuất phát ta sẽ đi được 1 vòng quanh tất cả các pump.
+    //Như vậy ta chỉ cần xuất phát từ pump đầu tiên, nếu xuất phát từ pump đầu tiên không đi được hết vòng tròn mà bị
+    //cạn nhiên liệu tại pump thứ i thì ta nhảy sang kiểm tra pump tại pump thứ i+1 luôn (vì nếu giả sử ta nhảy sang kiểm tra
+    //pump thứ 2, 3, ... , i-1, i thì chắc chắn ta cũng không đi được hết vòng tròn vì tổng số dư petrol vẫn là âm) 
+    //Nếu xuất phát tại phần tử thứ k (k > 1) mà đi được hết dãy (số dư petrol cuối dãy vẫn là dương) thì chứng tỏ 
+    //ta có thể xuất phát tại điểm thứ k
     //Giải thích: để đi được 1 vòng tròn thì
     // tổng số dư petrol = petrol nạp vào - petrol tiêu hao 
     //= tổng số dư petrol (1, k) + tổng số dư petrol (k+1, n) >= 0 
