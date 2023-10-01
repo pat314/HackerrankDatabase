@@ -25,6 +25,17 @@ class Result {
          * Ý tưởng bài này cũng giống bài Down To Zero II: ta duyệt tất cả các cách đi 
          * có thể, tại 1 lần duyệt nào đó, với 1 cách đi nào đó, ta tới được đích thì
          * cách đi đó sẽ là cách đi tốn ít bước nhất
+         * 
+         * Lưu ý: trục Ox, Oy của grid:
+         * O-------------------> y
+         *  |
+         *  |
+         *  |
+         *  |
+         *  |
+         *  |
+         *  V
+         *  x
          */
 
         // Write your code here
